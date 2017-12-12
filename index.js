@@ -39,9 +39,11 @@ if ('serviceWorker' in navigator) {
 // register received new subscription by sending a POST request with its
 // endpoint to the server.
 function subscribe() {
-  navigator.serviceWorker.ready.then(function(registration) {
+  navigator.serviceWorker.ready
+  .then(function(registration) {
     return registration.pushManager.subscribe({ userVisibleOnly: true });
-  }).then(function(subscription) {
+  })
+  .then(function(subscription) {
     console.log('Subscribed', subscription.endpoint);
     return fetch('register', {
       method: 'post',
@@ -52,7 +54,29 @@ function subscribe() {
         endpoint: subscription.endpoint
       })
     });
-  }).then(setUnsubscribeButton);
+  })
+  .then(setUnsubscribeButton)
+  .then(function(serviceWorkerRegistration) {
+    // Do we already have a push message subscription?
+    serviceWorkerRegistration.pushManager.getSubscription()
+      .then(function(subscription) {
+        if (!subscription) {
+          // We aren’t subscribed to push, so set UI
+          // to allow the user to enable push
+          return;
+        }
+
+        // Keep your server in sync with the latest subscriptionId
+        sendSubscriptionToServer(subscription);
+        
+        showCurlCommand(subscription);
+
+        // Set your UI to show they have subscribed for
+        // push messages
+        pushButton.textContent = 'Disable Push Messages';
+        isPushEnabled = true;
+        })
+    });
 }
 
 // Get existing subscription from service worker, unsubscribe
