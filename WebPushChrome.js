@@ -2,7 +2,7 @@ firebase.initializeApp({
     messagingSenderId: '448358493027'
 });
 
-
+var messaging = null;
 var bt_register = $('#register_FCM');
 var bt_delete = $('#delete_FCM');
 var token = $('#token_FCM');
@@ -32,8 +32,34 @@ if (window.location.protocol === 'https:' &&
             if (Notification.permission === 'granted') {
                 subscribe_FCM();
             }
-        })
+        }).then(registerHandlers);
+} else {
+    if (window.location.protocol !== 'https:') {
+        showError_FCM('Is not from HTTPS');
+    } else if (!('Notification' in window)) {
+        showError_FCM('Notification not supported');
+    } else if (!('serviceWorker' in navigator)) {
+        showError_FCM('ServiceWorker not supported');
+    } else if (!('localStorage' in window)) {
+        showError_FCM('LocalStorage not supported');
+    } else if (!('fetch' in window)) {
+        showError_FCM('fetch not supported');
+    } else if (!('postMessage' in window)) {
+        showError_FCM('postMessage not supported');
+    }
 
+    console.warn('This browser does not support desktop notification.');
+    console.log('Is HTTPS', window.location.protocol === 'https:');
+    console.log('Support Notification', 'Notification' in window);
+    console.log('Support ServiceWorker', 'serviceWorker' in navigator);
+    console.log('Support LocalStorage', 'localStorage' in window);
+    console.log('Support fetch', 'fetch' in window);
+    console.log('Support postMessage', 'postMessage' in window);
+
+    updateUIForPushPermissionRequired_FCM();
+}
+
+function registerHandlers() {
     // get permission on subscribe only once
     bt_register.on('click', function () {
         if (Notification.permission === 'granted') {
@@ -113,31 +139,6 @@ if (window.location.protocol === 'https:' &&
                 showError_FCM('Unable to retrieve refreshed token.', error);
             });
     });
-
-} else {
-    if (window.location.protocol !== 'https:') {
-        showError_FCM('Is not from HTTPS');
-    } else if (!('Notification' in window)) {
-        showError_FCM('Notification not supported');
-    } else if (!('serviceWorker' in navigator)) {
-        showError_FCM('ServiceWorker not supported');
-    } else if (!('localStorage' in window)) {
-        showError_FCM('LocalStorage not supported');
-    } else if (!('fetch' in window)) {
-        showError_FCM('fetch not supported');
-    } else if (!('postMessage' in window)) {
-        showError_FCM('postMessage not supported');
-    }
-
-    console.warn('This browser does not support desktop notification.');
-    console.log('Is HTTPS', window.location.protocol === 'https:');
-    console.log('Support Notification', 'Notification' in window);
-    console.log('Support ServiceWorker', 'serviceWorker' in navigator);
-    console.log('Support LocalStorage', 'localStorage' in window);
-    console.log('Support fetch', 'fetch' in window);
-    console.log('Support postMessage', 'postMessage' in window);
-
-    updateUIForPushPermissionRequired_FCM();
 }
 
 function ChromWebPushInit() {
