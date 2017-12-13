@@ -42,7 +42,7 @@ function askPermission_F() {
 function getSubscription_F() {
     return navigator.serviceWorker.ready
         .then(function (registration) {
-            return registration.pushManager.getSubscription_F();
+            return registration.pushManager.getSubscription();
         });
 }
 
