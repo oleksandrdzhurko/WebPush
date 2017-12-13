@@ -59,7 +59,7 @@ function subscribe() {
   .then(setUnsubscribeButton)
   .then(function(serviceWorkerRegistration) {
     // Do we already have a push message subscription?
-    serviceWorkerRegistration.pushManager.getSubscription()
+    getSubscription()
       .then(function(subscription) {
           debugger;
         if (!subscription) {
@@ -69,14 +69,9 @@ function subscribe() {
         }
 
         // Keep your server in sync with the latest subscriptionId
-        sendSubscriptionToServer(subscription);
+        //sendSubscriptionToServer(subscription);
         
-        showCurlCommand(subscription);
-
-        // Set your UI to show they have subscribed for
-        // push messages
-        pushButton.textContent = 'Disable Push Messages';
-        isPushEnabled = true;
+        //showCurlCommand(subscription);
         })
     });
 }
