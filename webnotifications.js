@@ -43,6 +43,6 @@ function permissionCallback(permission){
     
     var e = new Notification("Test Title",{
         body: "This is the body " + data.msg,
-        img: "https://static.volotea.com/imgr/logo/logo-en.png"
+        img: "https://static.volotea.com/img/logo.footer.png"
     });
 }
