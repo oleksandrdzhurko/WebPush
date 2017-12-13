@@ -8,7 +8,7 @@ function ChromWebPushInit(){
           console.log('service worker registered');
           subscriptionButton.removeAttribute('disabled');
           if ('Notification' in window) {
-            var messaging = firebase.messaging();
+            messaging = firebase.messaging();
             checkPermission();
         }
         }).catch(function(err) {
