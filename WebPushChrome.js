@@ -17,7 +17,6 @@ var alert = $('#alert_FCM');
 var alert_message = $('#alert-message_FCM');
 
 var input_body = $('#body_FCM');
-var timerId = setInterval(setNotificationDemoBody, 10000);
 
 resetUI_FCM();
 
