@@ -244,6 +244,7 @@ function resetUI_FCM() {
     form.hide();
     massage_row.hide();
     info.hide();
+    error.hide();
 }
 
 function updateUIForPushPermissionRequired_FCM() {
