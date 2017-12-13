@@ -10,22 +10,22 @@ function ChromWebPushInit(){
           if ('Notification' in window) {
             messaging = firebase.messaging();
             messaging.useServiceWorker(registration);
-            checkPermission();
+            checkPermission_C();
         }
         }).catch(function(err) {
             console.error('Unable to register service worker.', err);
           });    
 }
 
-function checkPermission(){
+function checkPermission_C(){
     if (Notification.permission === 'granted') {
-        subscribe();
+        subscribe_C();
     }else{
-        askPermission().then(subscribe);
+        askPermission_C().then(subscribe_C);
     }
 }
 
-function askPermission(){
+function askPermission_C(){
     return new Promise(function(resolve, reject) {
         const permissionResult = Notification.requestPermission(function(result) {
           resolve(result);
@@ -42,26 +42,26 @@ function askPermission(){
       });
 }
 
-function subscribe() {
+function subscribe_C() {
     messaging.getToken()
         .then(function (currentToken) {
             console.log(currentToken);
 
             if (currentToken) {
-                sendTokenToServer(currentToken);
+                sendTokenToServer_C(currentToken);
             } else {
                 console.warn("Can't get Token");
-                setTokenSentToServer(false);
+                setTokenSentToServer_C(false);
             }
         })
         .catch(function (err) {
             console.warn("Error while getting Token", err);
-            setTokenSentToServer(false);
+            setTokenSentToServer_C(false);
         });
 }
 
-function sendTokenToServer(currentToken) {
-    if (!isTokenSentToServer(currentToken)) {
+function sendTokenToServer_C(currentToken) {
+    if (!isTokenSentToServer_C(currentToken)) {
         console.log("Send Token on Server");
 
         // var url = ''; 
@@ -69,18 +69,18 @@ function sendTokenToServer(currentToken) {
         //     token: currentToken
         // });
 
-        setTokenSentToServer(currentToken);
+        setTokenSentToServer_C(currentToken);
     } else {
         console.log("Token already on server");
     }
 }
 
 // Set in localStorage that user is subscribed
-function isTokenSentToServer(currentToken) {
+function isTokenSentToServer_C(currentToken) {
     return window.localStorage.getItem('sentFirebaseMessagingToken') == currentToken;
 }
 
-function setTokenSentToServer(currentToken) {
+function setTokenSentToServer_C(currentToken) {
     window.localStorage.setItem(
         'sentFirebaseMessagingToken',
         currentToken ? currentToken : ''
