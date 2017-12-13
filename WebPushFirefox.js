@@ -53,6 +53,8 @@ function subscribe() {
             if (subscription) {
                 console.log('Already subscribed');
                 console.log(subscription.endpoint);
+                console.log(subscription.getKey('p256dh'));
+                console.log(subscription.getKey('auth'));
                 setUnsubscribeButton();
                 sendEndpointToServer(subscription.endpoint);
             } else {
