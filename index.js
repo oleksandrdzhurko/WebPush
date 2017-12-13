@@ -8,7 +8,6 @@ var isChrome = !!window.chrome && !!window.chrome.webstore;
 var isFirefox = typeof InstallTrigger !== 'undefined';
 
 if(isChrome){
-    importScripts("WebPushChrome.js");
     ChromWebPushInit();
 }
 
