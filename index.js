@@ -115,6 +115,6 @@ function setUnsubscribeButton() {
 }
 
 function setEndpoint(endpoint) {
-    var input = document.getElementsByName('subscriptionButton');
+    var input = document.getElementsByName('subscribtionEndpoint');
     input[0].setAttribute("value",endpoint);
   }
