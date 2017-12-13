@@ -8,11 +8,19 @@ var isChrome = !!window.chrome && !!window.chrome.webstore;
 var isFirefox = typeof InstallTrigger !== 'undefined';
 
 if(isChrome){
+    importScript("./WebPushChrome.js");
     ChromWebPushInit();
 }
 
 if(isFirefox){
+    importScript("./WebPushFirefox.js");
     FirefoxWebPushInit();
+}
+
+function importScript(filename){
+    var fileref=document.createElement('script')
+    fileref.setAttribute("type","text/javascript")
+    fileref.setAttribute("src", filename)
 }
 
 // var subscriptionButton = document.getElementById('subscriptionButton');
