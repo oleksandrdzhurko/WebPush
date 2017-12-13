@@ -4,6 +4,8 @@
   <meta charset='utf-8'>
   <title>Push notifications with subscription management - ServiceWorker</title>
   <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <style>
     body {
       font-family: monospace;
@@ -19,9 +21,10 @@
   <p>This demo shows how to subscribe/unsubscribe to the push notifications.</p>
   <button id='subscriptionButton' disabled>fghfghfgh</button>
 
-  Subscribtion Ednpoint: <input type="text" name="subscribtionEndpoint"><br>
-  Last name: <input type="text" name="lname"><br>
+  Subscribtion Ednpoint: <input type="text" name="subscribtionEndpoint" style="width: 600px;"><br>
+  <br>
   <p>To simulate the subscription expiration under Firefox please set the <code>dom.push.userAgentId</code> in about:config to an empty string. (Note: <A href="https://bugzilla.mozilla.org/show_bug.cgi?id=1222428">bug 1222428</a>)</p>
-  <script src='./index.js'></script>
+    <script type="text/javascript" src="//www.gstatic.com/firebasejs/3.6.8/firebase.js"></script>
+    <script src='./index.js'></script>
 </body>
 </html>
