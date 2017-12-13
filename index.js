@@ -149,4 +149,4 @@ if(isChrome){
 //     var data = {
 //         msg: "Hello everyone"
 //     };
-}
+//}
