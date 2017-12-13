@@ -17,7 +17,10 @@
 <body>
 
   <p>This demo shows how to subscribe/unsubscribe to the push notifications.</p>
-  <button id='subscriptionButton'>fghfghfgh</button>
+  <button id='subscriptionButton' disabled>fghfghfgh</button>
+
+  Subscribtion Ednpoint: <input type="text" name="subscribtionEndpoint"><br>
+  Last name: <input type="text" name="lname"><br>
   <p>To simulate the subscription expiration under Firefox please set the <code>dom.push.userAgentId</code> in about:config to an empty string. (Note: <A href="https://bugzilla.mozilla.org/show_bug.cgi?id=1222428">bug 1222428</a>)</p>
   <script src='./index.js'></script>
 </body>

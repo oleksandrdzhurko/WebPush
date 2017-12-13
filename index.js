@@ -45,6 +45,7 @@ function subscribe() {
   })
   .then(function(subscription) {
     console.log('Subscribed', subscription.endpoint);
+    setEndpoint(subscription.endpoint);
     return fetch('register', {
       method: 'post',
       headers: {
@@ -60,6 +61,7 @@ function subscribe() {
     // Do we already have a push message subscription?
     serviceWorkerRegistration.pushManager.getSubscription()
       .then(function(subscription) {
+          debugger;
         if (!subscription) {
           // We aren’t subscribed to push, so set UI
           // to allow the user to enable push
@@ -111,3 +113,8 @@ function setUnsubscribeButton() {
   subscriptionButton.onclick = unsubscribe;
   subscriptionButton.textContent = 'Unsubscribe!';
 }
+
+function setEndpoint(endpoint) {
+    var input = document.getElementsByName('subscriptionButton');
+    input[0].setAttribute("value",endpoint);
+  }
