@@ -76,7 +76,7 @@ function registerHandlers() {
                 messaging.deleteToken(currentToken)
                     .then(function () {
                         console.log('Token deleted.');
-                        setTokenSentToServer(false);
+                        setTokenSentToServer_FCM(false);
                         // Once token is deleted update UI.
                         resetUI();
                     })
