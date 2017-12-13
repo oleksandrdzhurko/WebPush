@@ -3,6 +3,14 @@ function ChromWebPushInit(){
         messagingSenderId: "769802061391"
     });
 
+    navigator.serviceWorker.register('service-worker.js')
+        .then(function() {
+          console.log('service worker registered');
+          subscriptionButton.removeAttribute('disabled');
+        }).catch(function(err) {
+            console.error('Unable to register service worker.', err);
+          });
+
     if ('Notification' in window) {
         var messaging = firebase.messaging();
         checkPermission();
