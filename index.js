@@ -7,15 +7,13 @@ var isChrome = !!window.chrome && !!window.chrome.webstore;
 // Firefox 1.0+
 var isFirefox = typeof InstallTrigger !== 'undefined';
 
-ChromWebPushInit();
+if(isChrome){
+    ChromWebPushInit();
+}
 
-// if(isChrome){
-//     ChromWebPushInit();
-// }
-
-// if(isFirefox){
-//     FirefoxWebPushInit();
-// }
+if(isFirefox){
+    FirefoxWebPushInit();
+}
 
 // var subscriptionButton = document.getElementById('subscriptionButton');
 
