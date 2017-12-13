@@ -50,11 +50,25 @@ function getSubscription_F() {
 function subscribe_F() {
     getSubscription_F()
         .then(function (subscription) {
+            var endpoint;
+            var key;
+            var authSecret;
+
             if (subscription) {
                 console.log('Already subscribed');
                 console.log(subscription.endpoint);
-                console.log(subscription.getKey('p256dh'));
-                console.log(subscription.getKey('auth'));
+               
+
+                var rawKey = subscription.getKey ? subscription.getKey('p256dh') : '';
+                key = rawKey ?
+                      btoa(String.fromCharCode.apply(null, new Uint8Array(rawKey))) :
+                      '';
+                var rawAuthSecret = subscription.getKey ? subscription.getKey('auth') : '';
+                authSecret = rawAuthSecret ?
+                             btoa(String.fromCharCode.apply(null, new Uint8Array(rawAuthSecret))) :
+                             '';
+                             console.log(key);
+                             console.log(authSecret);
                 setUnsubscribeButton();
                 sendEndpointToServer_F(subscription.endpoint);
             } else {
