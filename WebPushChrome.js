@@ -78,7 +78,7 @@ function registerHandlers() {
                         console.log('Token deleted.');
                         setTokenSentToServer_FCM(false);
                         // Once token is deleted update UI.
-                        resetUI();
+                        resetUI_FCM();
                     })
                     .catch(function (error) {
                         showError_FCM('Unable to delete token.', error);
