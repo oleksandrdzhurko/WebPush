@@ -7,14 +7,13 @@ function ChromWebPushInit(){
         .then(function() {
           console.log('service worker registered');
           subscriptionButton.removeAttribute('disabled');
+          if ('Notification' in window) {
+            var messaging = firebase.messaging();
+            checkPermission();
+        }
         }).catch(function(err) {
             console.error('Unable to register service worker.', err);
-          });
-
-    if ('Notification' in window) {
-        var messaging = firebase.messaging();
-        checkPermission();
-    }
+          });    
 }
 
 function checkPermission(){
