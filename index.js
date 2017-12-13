@@ -11,10 +11,9 @@ if(isChrome){
     ChromWebPushInit();
 }
 
-// if(isFirefox){
-//     importScripts("WebPushFirefox.js");
-//     FirefoxWebPushInit();
-// }
+if(isFirefox){
+    FirefoxWebPushInit();
+}
 
 // var subscriptionButton = document.getElementById('subscriptionButton');
 
@@ -112,41 +111,18 @@ if(isChrome){
 //   }).then(setSubscribeButton);
 // }
 
-// // Change the subscription button's text and action.
-// function setSubscribeButton() {
-//   subscriptionButton.onclick = subscribe;
-//   subscriptionButton.textContent = 'Subscribe!';
-// }
+// Change the subscription button's text and action.
+function setSubscribeButton() {
+  subscriptionButton.onclick = subscribe;
+  subscriptionButton.textContent = 'Subscribe!';
+}
 
-// function setUnsubscribeButton() {
-//   subscriptionButton.onclick = unsubscribe;
-//   subscriptionButton.textContent = 'Unsubscribe!';
-// }
+function setUnsubscribeButton() {
+  subscriptionButton.onclick = unsubscribe;
+  subscriptionButton.textContent = 'Unsubscribe!';
+}
 
-// function setEndpoint(endpoint) {
-//     var input = document.getElementsByName('subscribtionEndpoint');
-//     input[0].setAttribute("value",endpoint);
-//   }
-
-//   function askPermission() {
-//     return new Promise(function(resolve, reject) {
-//       const permissionResult = Notification.requestPermission(function(result) {
-//         resolve(result);
-//       });
-  
-//       if (permissionResult) {
-//         permissionResult.then(resolve, reject);
-//       }
-//     })
-//     .then(function(permissionResult) {
-//       if (permissionResult !== 'granted') {
-//         throw new Error('We weren\'t granted permission.');
-//       }
-//     });
-//   }
-
-//   function permissionCallback(permission){
-//     var data = {
-//         msg: "Hello everyone"
-//     };
-//}
+function setEndpoint(endpoint) {
+    var input = document.getElementsByName('subscribtionEndpoint');
+    input[0].setAttribute("value",endpoint);
+  }
