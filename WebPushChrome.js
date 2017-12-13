@@ -141,25 +141,6 @@ function registerHandlers() {
     });
 }
 
-function ChromWebPushInit() {
-    firebase.initializeApp({
-        messagingSenderId: "769802061391"
-    });
-
-    navigator.serviceWorker.register('firebase-messaging-sw.js')
-        .then(function (registration) {
-            console.log('service worker registered');
-            subscriptionButton.removeAttribute('disabled');
-            if ('Notification' in window) {
-                messaging = firebase.messaging();
-                messaging.useServiceWorker(registration);
-                checkPermission_C();
-            }
-        }).catch(function (err) {
-            console.error('Unable to register service worker.', err);
-        });
-}
-
 function registerServiceWorker_FCM() {
     return new Promise(function (resolve, reject) {
         var registerResult = navigator.serviceWorker.register('firebase-messaging-sw.js')
