@@ -111,19 +111,19 @@ function registerHandlers() {
             .append('<em> ' + payload.notification.body + '</em>')
             ;
 
-        // register fake ServiceWorker for show notification on mobile devices
-        navigator.serviceWorker.register('messaging-sw.js');
-        Notification.requestPermission(function (permission) {
-            if (permission === 'granted') {
-                navigator.serviceWorker.ready.then(function (registration) {
-                    payload.notification.data = payload.notification;
-                    registration.showNotification(payload.notification.title, payload.notification);
-                }).catch(function (error) {
-                    // registration failed :(
-                    showError_FCM('ServiceWorker registration failed.', error);
-                });
-            }
-        });
+        // // register fake ServiceWorker for show notification on mobile devices
+        // navigator.serviceWorker.register('messaging-sw.js');
+        // Notification.requestPermission(function (permission) {
+        //     if (permission === 'granted') {
+        //         navigator.serviceWorker.ready.then(function (registration) {
+        //             payload.notification.data = payload.notification;
+        //             registration.showNotification(payload.notification.title, payload.notification);
+        //         }).catch(function (error) {
+        //             // registration failed :(
+        //             showError_FCM('ServiceWorker registration failed.', error);
+        //         });
+        //     }
+        // });
     });
 
     // Callback fired if Instance ID token is updated.
